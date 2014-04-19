@@ -67,6 +67,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self configureTableView:self.tableView];
 }
 
 //===============================================
