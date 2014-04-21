@@ -92,6 +92,10 @@
     tableView.separatorInset = UIEdgeInsetsZero;
     
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
+    
+    UIView *tableFooterViewToGetRidOfBlankRows = [[UIView alloc] initWithFrame:CGRectZero];
+    tableFooterViewToGetRidOfBlankRows.backgroundColor = [UIColor clearColor];
+    tableView.tableFooterView = tableFooterViewToGetRidOfBlankRows;
 }
 
 //===============================================
