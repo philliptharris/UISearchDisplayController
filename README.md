@@ -1,4 +1,4 @@
 UISearchDisplayController
 =========================
 
-An example of how to implement a UISearchDisplayController
+An example of how to implement a UISearchDisplayController.
