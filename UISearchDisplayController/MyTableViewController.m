@@ -11,8 +11,6 @@
 @interface MyTableViewController ()
 
 @property (nonatomic, strong) NSArray *names;
-
-@property (nonatomic, strong) NSString *searchString;
 @property (nonatomic, strong) NSArray *searchResults;
 
 @end
@@ -45,18 +43,6 @@
 - (void)commonInit
 {
     _names = @[@"Aaliyah", @"Aaron", @"Abigail", @"Adam", @"Addison", @"Adrian", @"Aiden", @"Alex", @"Alexa", @"Alexander", @"Alexandra", @"Alexis", @"Allison", @"Alyssa", @"Amelia", @"Andrea", @"Andrew", @"Angel", @"Anna", @"Annabelle", @"Anthony", @"Aria", @"Ariana", @"Arianna", @"Ashley", @"Aubree", @"Aubrey", @"Audrey", @"Austin", @"Autumn", @"Ava", @"Avery", @"Ayden", @"Bailey", @"Bella", @"Benjamin", @"Bentley", @"Blake", @"Brandon", @"Brayden", @"Brianna", @"Brody", @"Brooklyn", @"Bryson", @"Caleb", @"Cameron", @"Camila", @"Carlos", @"Caroline", @"Carson", @"Carter", @"Charles", @"Charlotte", @"Chase", @"Chloe", @"Christian", @"Christopher", @"Claire", @"Colton", @"Connor", @"Cooper", @"Damian", @"Daniel", @"David", @"Dominic", @"Dylan", @"Easton", @"Eli", @"Elijah", @"Elizabeth", @"Ella", @"Ellie", @"Emily", @"Emma", @"Ethan", @"Eva", @"Evan", @"Evelyn", @"Faith", @"Gabriel", @"Gabriella", @"Gavin", @"Genesis", @"Gianna", @"Grace", @"Grayson", @"Hailey", @"Hannah", @"Harper", @"Henry", @"Hudson", @"Hunter", @"Ian", @"Isaac", @"Isabella", @"Isaiah", @"Jace", @"Jack", @"Jackson", @"Jacob", @"James", @"Jasmine", @"Jason", @"Jaxon", @"Jayden", @"Jeremiah", @"Jocelyn", @"John", @"Jonathan", @"Jordan", @"Jose", @"Joseph", @"Joshua", @"Josiah", @"Juan", @"Julia", @"Julian", @"Justin", @"Katherine", @"Kayden", @"Kayla", @"Kaylee", @"Kennedy", @"Kevin", @"Khloe", @"Kimberly", @"Kylie", @"Landon", @"Lauren", @"Layla", @"Leah", @"Levi", @"Liam", @"Lillian", @"Lily", @"Logan", @"London", @"Lucas", @"Lucy", @"Luis", @"Luke", @"Lydia", @"Mackenzie", @"Madeline", @"Madelyn", @"Madison", @"Makayla", @"Mason", @"Matthew", @"Maya", @"Melanie", @"Mia", @"Michael", @"Molly", @"Morgan", @"Naomi", @"Natalie", @"Nathan", @"Nathaniel", @"Nevaeh", @"Nicholas", @"Noah", @"Nolan", @"Oliver", @"Olivia", @"Owen", @"Parker", @"Peyton", @"Piper", @"Reagan", @"Riley", @"Robert", @"Ryan", @"Ryder", @"Samantha", @"Samuel", @"Sarah", @"Savannah", @"Scarlett", @"Sebastian", @"Serenity", @"Skylar", @"Sofia", @"Sophia", @"Sophie", @"Stella", @"Sydney", @"Taylor", @"Thomas", @"Trinity", @"Tristan", @"Tyler", @"Victoria", @"Violet", @"William", @"Wyatt", @"Xavier", @"Zachary", @"Zoe", @"Zoey"];
-}
-
-//===============================================
-#pragma mark -
-#pragma mark Setters
-//===============================================
-
-- (void)setSearchString:(NSString *)searchString {
-    _searchString = searchString;
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchString];
-    self.searchResults = [self.names filteredArrayUsingPredicate:predicate];
 }
 
 //===============================================
@@ -157,7 +143,10 @@
 }
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     NSLog(@"🔦 | should reload table for search string?");
-    self.searchString = searchString;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchString];
+    self.searchResults = [self.names filteredArrayUsingPredicate:predicate];
+    
     return YES;
 }
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
