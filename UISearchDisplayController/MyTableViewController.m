@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSArray *names;
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) UISearchDisplayController *searchController;
 
 @end
 
@@ -55,6 +56,30 @@
     [super viewDidLoad];
     
     [self configureTableView:self.tableView];
+    
+    // If you don't add the search bar and search display controller in Interface Builder, you can instead add them programmatically here.
+//    [self addSearchBarAndSearchDisplayController];
+}
+
+//===============================================
+#pragma mark -
+#pragma mark Search Display Controller
+//===============================================
+
+- (void)addSearchBarAndSearchDisplayController {
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    [searchBar sizeToFit];
+    searchBar.delegate = self;
+    
+    self.tableView.tableHeaderView = searchBar;
+    
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    searchDisplayController.delegate = self;
+    searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
+    
+    self.searchController = searchDisplayController;
 }
 
 //===============================================

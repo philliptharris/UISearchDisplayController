@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyTableViewController : UITableViewController
+@interface MyTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end
